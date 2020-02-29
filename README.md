@@ -2,6 +2,8 @@
 
 React client that consumes an API and can list, show, create, update, and remove a resource.
 
+The client is deployed and running in https://fox-one.now.sh/
+
 ## Install in local enviroment.
 
 - yarn install
