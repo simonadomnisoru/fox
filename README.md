@@ -8,20 +8,18 @@ React client that consumes an API and can list, show, create, update, and remove
 
 ## Run in local enviroment.
 
-- yarn run
+- yarn start
 
 ## Test in local enviroment.
 
 - yarn test
 
-## Structure
-
-- [todo]
-
 ## Libraries used for development
 
-- [Create React App](https://create-react-app.dev/) used to create the project with no build configuration
-- [todo]
+- [Create React App](https://create-react-app.dev/)
+- [Boostrap](https://getbootstrap.com/)
+- [Typescript](https://www.typescriptlang.org/)
+- [React-router-dom](https://reacttraining.com/react-router/web/)
 
 ## Libraries used for testing
 

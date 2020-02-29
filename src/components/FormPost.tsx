@@ -61,7 +61,6 @@ const FormPost = (props: IFormPost) => {
           onChange={onChange}
         />
       </div>
-      <hr />
       <div className="container">
         <div className="row">
           <div className="col-11">

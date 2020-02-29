@@ -19,6 +19,13 @@ const Edit = withRouter(({ match: { params } }) => {
     }
   };
 
+  const onError = () => {
+    dispatch({
+      field: "image_url",
+      value: "https://picsum.photos/100/100"
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,12 +54,24 @@ const Edit = withRouter(({ match: { params } }) => {
           An error occurred while your post was submitted. Try again later.
         </div>
       ) : (
-        <FormPost
-          post={state}
-          onChange={onChange}
-          onSubmit={onSubmit}
-          disabled={disabled}
-        ></FormPost>
+        <React.Fragment>
+          <label>Tumbnail</label>
+          <br />
+          <img
+            alt="post"
+            src={state.image_url}
+            className="img-thumbnail"
+            height="100"
+            width="100"
+            onError={onError}
+          />
+          <FormPost
+            post={state}
+            onChange={onChange}
+            onSubmit={onSubmit}
+            disabled={disabled}
+          ></FormPost>
+        </React.Fragment>
       )}
     </div>
   );

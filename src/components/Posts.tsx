@@ -53,7 +53,6 @@ const Posts = () => {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Tumbnail</th>
                 <th scope="col">Content</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -64,13 +63,6 @@ const Posts = () => {
                 <tr key={post.id}>
                   <th scope="row">{post.id}</th>
                   <td>{post.title}</td>
-                  <td>
-                    <img
-                      alt="post"
-                      src={post.image_url}
-                      className="img-thumbnail"
-                    />
-                  </td>
                   <td>{post.content}</td>
                   <td>
                     <button onClick={() => handleShow(post.id)}>Edit</button>
