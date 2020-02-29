@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the create form component 1`] = `
+exports[`Create renders the create form component 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

@@ -1,13 +1,13 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import Edit from "../components/Create";
+import Posts from "../components/Posts";
 import { render } from "@testing-library/react";
 
-describe("Edit", () => {
-  it("renders the edit form component", () => {
+describe("Posts", () => {
+  it("renders the posts component", () => {
     const wrapper = render(
-      <MemoryRouter initialEntries={["/edit/2"]}>
-        <Edit />
+      <MemoryRouter>
+        <Posts />
       </MemoryRouter>
     );
     expect(wrapper).toMatchSnapshot();

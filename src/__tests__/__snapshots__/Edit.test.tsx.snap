@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the create form component 1`] = `
+exports[`Edit renders the edit form component 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -9,19 +9,8 @@ Object {
         class="posts"
       >
         <h4>
-          Edit
+          Create
         </h4>
-        <label>
-          Tumbnail
-        </label>
-        <br />
-        <img
-          alt="post"
-          class="img-thumbnail"
-          height="100"
-          src=""
-          width="100"
-        />
         <form>
           <div
             class="form-group"
@@ -121,19 +110,8 @@ Object {
       class="posts"
     >
       <h4>
-        Edit
+        Create
       </h4>
-      <label>
-        Tumbnail
-      </label>
-      <br />
-      <img
-        alt="post"
-        class="img-thumbnail"
-        height="100"
-        src=""
-        width="100"
-      />
       <form>
         <div
           class="form-group"
