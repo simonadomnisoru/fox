@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,OACE,aAAc,CACd,SAAU,CACV,cACF","file":"main.616b3624.chunk.css","sourcesContent":[".posts {\n  margin: 0 auto;\n  width: 80%;\n  padding-top: 5%;\n}\n"]}
