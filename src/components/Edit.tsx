@@ -1,84 +1,51 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { createPost } from "../api/posts";
+import React, { useState, useReducer, useEffect } from "react";
+import { withRouter, useHistory } from "react-router-dom";
+import { editPost, getPost } from "../api/posts";
+import { reducer, initialState } from "../hooks/formPostReducer";
+import FormPost from "./FormPost";
 
-const Edit = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+const Edit = withRouter(({ match: { params } }) => {
+  const { id } = params;
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [error, setError] = useState(false);
   const history = useHistory();
-  const handleSubmit = () => {
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({ field: e.target.name, value: e.target.value });
+  };
+  const onSubmit = async () => {
+    try {
+      const result = await editPost({ ...state, id });
+      result.error ? setError(true) : history.goBack();
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
     const fetchData = async () => {
-      const post = { title, content };
-      const result = await createPost(post);
-      console.log(result);
-      if (!result.error) {
-        history.goBack();
+      const result = await getPost(id);
+      for (var field in result) {
+        if (initialState.hasOwnProperty(field)) {
+          dispatch({ field, value: result[field] });
+        }
       }
     };
     fetchData();
-  };
+  }, [id]);
 
   return (
     <div className="posts">
       <h4>Edit</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Title</label>
-          <input
-            className="form-control"
-            value={title}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setTitle(event.target.value)
-            }
-          />
+      {error ? (
+        <div className="alert alert-danger" role="alert">
+          An error occurred while your post was submitted. Try again later.
         </div>
-
-        <div className="form-group">
-          <label>Content</label>
-          <input
-            className="form-control"
-            value={content}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setContent(event.target.value)
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Latitude</label>
-          <input className="form-control" />
-        </div>
-
-        <div className="form-group">
-          <label>Longitude</label>
-          <input className="form-control" />
-        </div>
-
-        <div className="form-group">
-          <label>Image</label>
-          <input className="form-control" />
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-11">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => history.goBack()}
-              >
-                Back
-              </button>
-            </div>
-            <div className="col-1">
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
+      ) : (
+        <FormPost {...state} onChange={onChange} onSubmit={onSubmit}></FormPost>
+      )}
     </div>
   );
-};
+});
 
 export default Edit;

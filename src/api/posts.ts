@@ -13,7 +13,7 @@ const getPosts = async () => {
   }
 };
 
-const getPost = async (id: number) => {
+const getPost = async (id: string) => {
   try {
     const response = await fetch(`${url}/${id}`);
     const parsedResponse = await response.json();
@@ -23,19 +23,18 @@ const getPost = async (id: number) => {
   }
 };
 
-const deletePost = async (id: number) => {
+const deletePost = async (id: string) => {
   try {
-    const response = await fetch(`${url}/${id}`, {
+    await fetch(`${url}/${id}`, {
       method: 'DELETE',
     })
-    const parsedResponse = await response.json();
-    return parsedResponse;
+    return { error: false };
   } catch (errorMessage) {
     return { error: true, errorMessage }
   }
 };
 
-const createPost = async (data: any) => {
+const createPost = async (data: IPost) => {
   try {
     const response = await
       fetch(url, {
@@ -55,7 +54,7 @@ const createPost = async (data: any) => {
 const editPost = async (data: IPost) => {
   try {
     const response = await
-      fetch(url, {
+      fetch(`${url}/${data.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
