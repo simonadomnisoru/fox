@@ -22,7 +22,7 @@ const Edit = withRouter(({ match: { params } }) => {
   const onError = () => {
     dispatch({
       field: "image_url",
-      value: "https://picsum.photos/100/100"
+      value: "https://image.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600w-1114445501.jpg"
     });
   };
 

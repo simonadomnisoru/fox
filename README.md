@@ -22,7 +22,3 @@ The client is deployed and running in https://fox-one.now.sh/
 - [Boostrap](https://getbootstrap.com/)
 - [Typescript](https://www.typescriptlang.org/)
 - [React-router-dom](https://reacttraining.com/react-router/web/)
-
-## Libraries used for testing
-
-- [todo]
