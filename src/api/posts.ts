@@ -1,25 +1,22 @@
 
 import { IPost } from "../types/post";
-
 const url = 'https://wf-challenge-yn8dgzymk9.herokuapp.com/api/v1/posts';
 
 const getPosts = async () => {
   try {
     const response = await fetch(url);
-    const parsedResponse = await response.json();
-    return parsedResponse;
+    return await response.json();
   } catch (errorMessage) {
-    return { error: true, errorMessage }
-  }
+    throw new Error(`An error occured while getting the posts: ${errorMessage}`);
+  };
 };
 
 const getPost = async (id: string) => {
   try {
     const response = await fetch(`${url}/${id}`);
-    const parsedResponse = await response.json();
-    return parsedResponse;
+    return await response.json();
   } catch (errorMessage) {
-    return { error: true, errorMessage }
+    throw new Error(`An error occured while getting the post: ${errorMessage}`);
   }
 };
 
@@ -30,7 +27,7 @@ const deletePost = async (id: string) => {
     })
     return { error: false };
   } catch (errorMessage) {
-    return { error: true, errorMessage }
+    throw new Error(`An error occured while deleating the post: ${errorMessage}`);
   }
 };
 
@@ -44,10 +41,9 @@ const createPost = async (data: IPost) => {
         },
         body: JSON.stringify(data),
       })
-    const parsedResponse = await response.json();
-    return parsedResponse;
+    return await response.json();
   } catch (errorMessage) {
-    return { error: true, errorMessage }
+    throw new Error(`An error occured while creating the post: ${errorMessage}`);
   }
 };
 
@@ -61,10 +57,9 @@ const editPost = async (data: IPost) => {
         },
         body: JSON.stringify(data),
       })
-    const parsedResponse = await response.json();
-    return parsedResponse;
+    return await response.json();
   } catch (errorMessage) {
-    return { error: true, errorMessage }
+    throw new Error(`An error occured while editing the post: ${errorMessage}`);
   }
 };
 

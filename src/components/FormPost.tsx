@@ -4,13 +4,10 @@ import { useHistory } from "react-router-dom";
 
 const FormPost = (props: IFormPost) => {
   const {
-    title,
-    content,
-    lat,
-    long,
-    image_url,
+    post: { title, content, lat, long, image_url },
     onChange,
-    onSubmit
+    onSubmit,
+    disabled
   } = props;
   const history = useHistory();
   return (
@@ -80,6 +77,7 @@ const FormPost = (props: IFormPost) => {
               type="button"
               className="btn btn-primary"
               onClick={onSubmit}
+              disabled={disabled}
             >
               Submit
             </button>

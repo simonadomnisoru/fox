@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { getPosts, deletePost } from "../api/posts";
-import { IPostShow } from "../types/post";
+import { IPost } from "../types/post";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -10,20 +10,20 @@ const Posts = () => {
   const fetchData = async () => {
     try {
       const result = await getPosts();
-      result.error ? setError(true) : setPosts(result);
+      setPosts(result);
     } catch (error) {
       setError(true);
     }
   };
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string | undefined = "") => {
     try {
-      const result = await deletePost(id);
-      result.error ? setError(true) : fetchData();
+      await deletePost(id);
+      fetchData();
     } catch (error) {
       setError(true);
     }
   };
-  const handleShow = (id: string) => {
+  const handleShow = (id: string | undefined = "") => {
     history.push(`/edit/${id}`);
   };
 
@@ -59,7 +59,7 @@ const Posts = () => {
               </tr>
             </thead>
             <tbody>
-              {posts.map((post: IPostShow) => (
+              {posts.map((post: IPost) => (
                 <tr key={post.id}>
                   <th scope="row">{post.id}</th>
                   <td>{post.title}</td>

@@ -1,25 +1,26 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { createPost } from "../api/posts";
-import { reducer, initialState } from "../hooks/formPostReducer";
+import { useHooks } from "../utils/hookForm";
 import FormPost from "./FormPost";
 
 const Create = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, disabled, onChange, checkDisabled } = useHooks();
   const [error, setError] = useState(false);
   const history = useHistory();
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ field: e.target.name, value: e.target.value });
-  };
   const onSubmit = async () => {
     try {
-      const result = await createPost(state);
-      result.error ? setError(true) : history.goBack();
+      await createPost(state);
+      history.goBack();
     } catch (error) {
       setError(true);
     }
   };
+
+  useEffect(() => {
+    checkDisabled();
+  }, [state]);
 
   return (
     <div className="posts">
@@ -29,7 +30,12 @@ const Create = () => {
           An error occurred while your post was submitted. Try again later.
         </div>
       ) : (
-        <FormPost {...state} onChange={onChange} onSubmit={onSubmit}></FormPost>
+        <FormPost
+          post={state}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          disabled={disabled}
+        ></FormPost>
       )}
     </div>
   );

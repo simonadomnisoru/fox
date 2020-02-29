@@ -1,16 +1,12 @@
-export interface IPostShow {
-    id: string;
-    title: string;
-    content: string;
-}
-
 export interface IPost {
     id?: string;
-    title: string;
-    content: string;
-    lat: string;
-    long: string;
-    image_url: string;
+    title?: string;
+    content?: string;
+    lat?: string;
+    long?: string;
+    image_url?: string;
+    error?: boolean;
+    errorMessage?: string;
 }
 
 export interface IReducerCreate {
@@ -19,11 +15,8 @@ export interface IReducerCreate {
 }
 
 export interface IFormPost {
-    title: string;
-    content: string;
-    lat: string;
-    long: string;
-    image_url: string;
+    post: IPost;
+    disabled: boolean;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSubmit: () => void;
 }

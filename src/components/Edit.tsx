@@ -1,22 +1,19 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter, useHistory } from "react-router-dom";
 import { editPost, getPost } from "../api/posts";
-import { reducer, initialState } from "../hooks/formPostReducer";
+import { useHooks, initialState } from "../utils/hookForm";
 import FormPost from "./FormPost";
 
 const Edit = withRouter(({ match: { params } }) => {
   const { id } = params;
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, disabled, dispatch, onChange, checkDisabled } = useHooks();
   const [error, setError] = useState(false);
   const history = useHistory();
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ field: e.target.name, value: e.target.value });
-  };
   const onSubmit = async () => {
     try {
-      const result = await editPost({ ...state, id });
-      result.error ? setError(true) : history.goBack();
+      await editPost({ ...state, id });
+      history.goBack();
     } catch (error) {
       setError(true);
     }
@@ -24,15 +21,23 @@ const Edit = withRouter(({ match: { params } }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getPost(id);
-      for (var field in result) {
-        if (initialState.hasOwnProperty(field)) {
-          dispatch({ field, value: result[field] });
+      try {
+        const result = await getPost(id);
+        for (var field in result) {
+          if (initialState.hasOwnProperty(field)) {
+            dispatch({ field, value: result[field] });
+          }
         }
+      } catch (error) {
+        setError(true);
       }
     };
     fetchData();
   }, [id]);
+
+  useEffect(() => {
+    checkDisabled();
+  }, [state]);
 
   return (
     <div className="posts">
@@ -42,7 +47,12 @@ const Edit = withRouter(({ match: { params } }) => {
           An error occurred while your post was submitted. Try again later.
         </div>
       ) : (
-        <FormPost {...state} onChange={onChange} onSubmit={onSubmit}></FormPost>
+        <FormPost
+          post={state}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          disabled={disabled}
+        ></FormPost>
       )}
     </div>
   );
