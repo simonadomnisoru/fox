@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { createPost } from "../api/posts";
-import { useHooks } from "../utils/hookForm";
+import { createPost } from "api/posts";
+import { useHooks } from "utils/hookForm";
 import FormPost from "./FormPost";
 
 const Create = () => {

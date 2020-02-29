@@ -1,7 +1,7 @@
-import { IPost, IReducerCreate } from "../types/post";
+import { IPost, IReducerCreate } from "types/post";
 import React, { useState, useReducer } from "react";
 
-const initialState = {
+const initialState: IPost = {
   title: "",
   content: "",
   lat: "",

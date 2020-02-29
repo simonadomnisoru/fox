@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter, useHistory } from "react-router-dom";
-import { editPost, getPost } from "../api/posts";
-import { useHooks, initialState } from "../utils/hookForm";
+import { editPost, getPost } from "api/posts";
+import { useHooks, initialState } from "utils/hookForm";
 import FormPost from "./FormPost";
 
 const Edit = withRouter(({ match: { params } }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { IFormPost } from "../types/post";
+import { IFormPost } from "types/post";
 import { useHistory } from "react-router-dom";
 
 const FormPost = (props: IFormPost) => {
@@ -53,7 +53,7 @@ const FormPost = (props: IFormPost) => {
       </div>
 
       <div className="form-group">
-        <label>Image</label>
+        <label>Image url</label>
         <input
           className="form-control"
           value={image_url}
@@ -61,6 +61,7 @@ const FormPost = (props: IFormPost) => {
           onChange={onChange}
         />
       </div>
+      <hr />
       <div className="container">
         <div className="row">
           <div className="col-11">

@@ -1,5 +1,5 @@
 
-import { IPost } from "../types/post";
+import { IPost } from "types/post";
 const url = 'https://wf-challenge-yn8dgzymk9.herokuapp.com/api/v1/posts';
 
 const getPosts = async () => {
