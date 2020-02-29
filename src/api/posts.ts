@@ -37,7 +37,6 @@ const deletePost = async (id: number) => {
 
 const createPost = async (data: any) => {
   try {
-    console.log(data)
     const response = await
       fetch(url, {
         method: 'POST',

@@ -2,29 +2,25 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createPost } from "../api/posts";
 
-const Create = () => {
+const Edit = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [error, setError] = useState(false);
   const history = useHistory();
   const handleSubmit = () => {
     const fetchData = async () => {
       const post = { title, content };
       const result = await createPost(post);
-      if (result.error) {
-        setError(true);
-      } else {
+      console.log(result);
+      if (!result.error) {
         history.goBack();
       }
     };
     fetchData();
   };
 
-  console.log(error);
-
   return (
     <div className="posts">
-      <h4>Create</h4>
+      <h4>Edit</h4>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title</label>
@@ -85,4 +81,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Edit;
