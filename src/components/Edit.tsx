@@ -19,13 +19,6 @@ const Edit = withRouter(({ match: { params } }) => {
     }
   };
 
-  const onError = () => {
-    dispatch({
-      field: "image_url",
-      value: "https://image.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600w-1114445501.jpg"
-    });
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,16 +48,6 @@ const Edit = withRouter(({ match: { params } }) => {
         </div>
       ) : (
         <React.Fragment>
-          <label>Tumbnail</label>
-          <br />
-          <img
-            alt="post"
-            src={state.image_url}
-            className="img-thumbnail"
-            height="100"
-            width="100"
-            onError={onError}
-          />
           <FormPost
             post={state}
             onChange={onChange}
