@@ -6,7 +6,7 @@ The client is deployed and running in https://fox-one.now.sh/
 
 ## Install in local enviroment.
 
-- yarn install
+- yarn
 
 ## Run in local enviroment.
 
@@ -22,3 +22,6 @@ The client is deployed and running in https://fox-one.now.sh/
 - [Boostrap](https://getbootstrap.com/)
 - [Typescript](https://www.typescriptlang.org/)
 - [React-router-dom](https://reacttraining.com/react-router/web/)
+
+## Github repo
+https://github.com/andreeasimona/fox
